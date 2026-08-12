@@ -1,0 +1,8 @@
+.zahls-payment-section .zahls-payment-desc { display: inline-block; vertical-align: top; width: 75%; font-size: 1.4rem; font-weight: normal;  }
+.zahls-payment-section .zahls-payment-logo {
+    display:inline-block;
+    vertical-align: middle;
+    margin: 0 20px 0 0px; width: 180px; height:60px; 
+    background-repeat: no-repeat; 
+    background-image: url('images/zahls_logo.svg');
+}

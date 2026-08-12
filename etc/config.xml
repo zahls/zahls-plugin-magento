@@ -1,0 +1,346 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * zahls.ch Payment Gateway Module
+ *
+ * @category  zahls.ch
+ * @package   Zahls_PaymentGateway
+ * @author      zahls <support@zahls.ch>
+ * @copyright   2026 zahls
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <zahls_payment>
+                <active>0</active>
+                <platform>zahls.ch</platform>
+                <title>zahls.ch</title>
+                <payment_action>authorize</payment_action> <!-- You can use anothed method like capture  -->
+                <order_status>pending_payment</order_status> <!-- set default order status-->
+                <model>Zahls\PaymentGateway\Model\PaymentMethod</model>
+                <sort_order>0</sort_order>
+            </zahls_payment>
+            <zahls_payment_masterpass>
+                <active>0</active>
+                <title>Masterpass by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodMasterpass</model>
+                <sort_order>1</sort_order>
+            </zahls_payment_masterpass>
+            <zahls_payment_mastercard>
+                <active>0</active>
+                <title>Mastercard by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodMastercard</model>
+                <sort_order>2</sort_order>
+            </zahls_payment_mastercard>
+            <zahls_payment_visa>
+                <active>0</active>
+                <title>Visa by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodVisa</model>
+                <sort_order>3</sort_order>
+            </zahls_payment_visa>
+            <zahls_payment_apple_pay>
+                <active>0</active>
+                <title>ApplePay by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodApplePay</model>
+                <sort_order>4</sort_order>
+            </zahls_payment_apple_pay>
+            <zahls_payment_maestro>
+                <active>0</active>
+                <title>Maestro by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodMaestro</model>
+                <sort_order>5</sort_order>
+            </zahls_payment_maestro>
+            <zahls_payment_jcb>
+                <active>0</active>
+                <title>Jcb by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodJcb</model>
+                <sort_order>6</sort_order>
+            </zahls_payment_jcb>
+            <zahls_payment_american_express>
+                <active>0</active>
+                <title>American Express by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodAmericanExpress</model>
+                <sort_order>7</sort_order>
+            </zahls_payment_american_express>
+            <zahls_payment_wirpay>
+                <active>0</active>
+                <title>Wirpay by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodWirpay</model>
+                <sort_order>8</sort_order>
+            </zahls_payment_wirpay>
+            <zahls_payment_paypal>
+                <active>0</active>
+                <title>Paypal by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodPaypal</model>
+                <sort_order>9</sort_order>
+            </zahls_payment_paypal>
+            <zahls_payment_bitcoin>
+                <active>0</active>
+                <title>Bitcoin by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodBitcoin</model>
+                <sort_order>10</sort_order>
+            </zahls_payment_bitcoin>
+            <zahls_payment_klarna>
+                <active>0</active>
+                <title>Klarna by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodKlarna</model>
+                <sort_order>11</sort_order>
+            </zahls_payment_klarna>
+            <zahls_payment_billpay>
+                <active>0</active>
+                <title>Billpay by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodBillpay</model>
+                <sort_order>12</sort_order>
+            </zahls_payment_billpay>
+            <zahls_payment_bonus>
+                <active>0</active>
+                <title>Bonuscard by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodBonus</model>
+                <sort_order>13</sort_order>
+            </zahls_payment_bonus>
+            <zahls_payment_cashu>
+                <active>0</active>
+                <title>Cashu by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodCashu</model>
+                <sort_order>14</sort_order>
+            </zahls_payment_cashu>
+            <zahls_payment_cb>
+                <active>0</active>
+                <title>Cb by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodCb</model>
+                <sort_order>15</sort_order>
+            </zahls_payment_cb>
+            <zahls_payment_diners_club>
+                <active>0</active>
+                <title>Diners Club by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodDinersClub</model>
+                <sort_order>16</sort_order>
+            </zahls_payment_diners_club>
+            <zahls_payment_sepa_direct_debit>
+                <active>0</active>
+                <title>Sepa Direct Debit by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodSepaDirectDebit</model>
+                <sort_order>17</sort_order>
+            </zahls_payment_sepa_direct_debit>
+            <zahls_payment_discover>
+                <active>0</active>
+                <title>Discover by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodDiscover</model>
+                <sort_order>18</sort_order>
+            </zahls_payment_discover>
+            <zahls_payment_elv>
+                <active>0</active>
+                <title>Elv by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodElv</model>
+                <sort_order>19</sort_order>
+            </zahls_payment_elv>
+            <zahls_payment_ideal>
+                <active>0</active>
+                <title>Ideal by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodIdeal</model>
+                <sort_order>20</sort_order>
+            </zahls_payment_ideal>
+            <zahls_payment_invoice>
+                <active>0</active>
+                <title>Invoice by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodInvoice</model>
+                <sort_order>21</sort_order>
+            </zahls_payment_invoice>
+            <zahls_payment_myone>
+                <active>0</active>
+                <title>Myone by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodMyone</model>
+                <sort_order>22</sort_order>
+            </zahls_payment_myone>
+            <zahls_payment_paysafecard>
+                <active>0</active>
+                <title>Paysafecard by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodPaysafeCard</model>
+                <sort_order>23</sort_order>
+            </zahls_payment_paysafecard>
+            <zahls_payment_post_finance_pay>
+                <active>0</active>
+                <title>Post Finance Pay by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PostFinancePay</model>
+                <sort_order>24</sort_order>
+            </zahls_payment_post_finance_pay>
+            <zahls_payment_swissbilling>
+                <active>0</active>
+                <title>Swissbilling by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodSwissBilling</model>
+                <sort_order>26</sort_order>
+            </zahls_payment_swissbilling>
+            <zahls_payment_twint>
+                <active>0</active>
+                <title>Twint by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodTwint</model>
+                <sort_order>27</sort_order>
+            </zahls_payment_twint>
+            <zahls_payment_barzahlen>
+                <active>0</active>
+                <title>Barzahlen by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodBarzahlen</model>
+                <sort_order>28</sort_order>
+            </zahls_payment_barzahlen>
+            <zahls_payment_bancontact>
+                <active>0</active>
+                <title>Bancontact by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodBancontact</model>
+                <sort_order>29</sort_order>
+            </zahls_payment_bancontact>
+            <zahls_payment_giropay>
+                <active>0</active>
+                <title>Giropay by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodGiropay</model>
+                <sort_order>30</sort_order>
+            </zahls_payment_giropay>
+            <zahls_payment_eps>
+                <active>0</active>
+                <title>Eps by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodEps</model>
+                <sort_order>31</sort_order>
+            </zahls_payment_eps>
+            <zahls_payment_google_pay>
+                <active>0</active>
+                <title>Google Pay by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodGooglePay</model>
+                <sort_order>32</sort_order>
+            </zahls_payment_google_pay>
+            <zahls_payment_oney>
+                <active>0</active>
+                <title>Oney by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodOney</model>
+                <sort_order>35</sort_order>
+            </zahls_payment_oney>
+            <zahls_payment_centi>
+                <active>0</active>
+                <title>Centi by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodCenti</model>
+                <sort_order>36</sort_order>
+            </zahls_payment_centi>
+            <zahls_payment_heidipay>
+                <active>0</active>
+                <title>Heidipay by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodHeidipay</model>
+                <sort_order>37</sort_order>
+            </zahls_payment_heidipay>
+            <zahls_payment_bank_transfer>
+                <active>0</active>
+                <title>Bank Transfer by zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodBankTransfer</model>
+                <sort_order>38</sort_order>
+            </zahls_payment_bank_transfer>
+            <zahls_payment_pay_by_bank>
+                <active>0</active>
+                <title>Pay by Bank via zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodPayByBank</model>
+                <sort_order>39</sort_order>
+            </zahls_payment_pay_by_bank>
+            <zahls_payment_powerpay>
+                <active>0</active>
+                <title>Powerpay via zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodPowerpay</model>
+                <sort_order>40</sort_order>
+            </zahls_payment_powerpay>
+            <zahls_payment_cembrapay>
+                <active>0</active>
+                <title>Purchase on Account (CembraPay)</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodCembraPay</model>
+                <sort_order>41</sort_order>
+            </zahls_payment_cembrapay>
+            <zahls_payment_crypto>
+                <active>0</active>
+                <title>Crypto via zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodCrypto</model>
+                <sort_order>42</sort_order>
+            </zahls_payment_crypto>
+            <zahls_payment_verd_cash>
+                <active>0</active>
+                <title>VERD.cash via zahls.ch</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <model>Zahls\PaymentGateway\Model\PaymentMethodVerdCash</model>
+                <sort_order>43</sort_order>
+            </zahls_payment_verd_cash>
+        </payment>
+    </default>
+</config>

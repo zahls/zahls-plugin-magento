@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * zahls.ch Payment Gateway
+ *
+ * Copyright © 2018 zahls (https://www.zahls.ch)
+ * See LICENSE.txt for license details.
+ *
+ * @copyright   2026 zahls
+ * @author      zahls <support@zahls.ch>
+ * @package     magento2
+ * @subpackage  zahls_payment_gateway
+ * @version     1.0.0
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="zahls" frontName="zahls">
+            <module name="Zahls_PaymentGateway" />
+        </route>
+    </router>
+</config>

@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Magento module ZIP
+        run: |
+          STAGE=$(mktemp -d)
+          mkdir -p "$STAGE/Zahls/PaymentGateway"
+          rsync -a \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='.gitignore' \
+            --exclude='README.md' \
+            ./ "$STAGE/Zahls/PaymentGateway/"
+          (cd "$STAGE" && zip -r "$GITHUB_WORKSPACE/Zahls_PaymentGateway.zip" Zahls -x '*.DS_Store')
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: Zahls_PaymentGateway.zip
+          generate_release_notes: true
+          body: |
+            ## Install
+            1. Download `Zahls_PaymentGateway.zip`
+            2. Extract into `app/code/` so you get `app/code/Zahls/PaymentGateway/`
+            3. Run `bin/magento module:enable Zahls_PaymentGateway` and `bin/magento setup:upgrade`

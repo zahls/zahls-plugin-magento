@@ -1,0 +1,36 @@
+{
+    "name": "zahls/magento-payment-gateway",
+    "description": "zahls.ch Payment Gateway module for Magento 2",
+    "require": {
+        "php": "^8.0",
+        "zahls/zahls-php": "dev-main"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/zahls/zahls-php.git"
+        }
+    ],
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0"
+    ],
+    "version": "1.4.10",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Zahls\\PaymentGateway\\": ""
+        }
+    },
+    "homepage": "https://www.zahls.ch",
+    "authors": [
+        {
+            "name": "zahls",
+            "homepage": "https://www.zahls.ch"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

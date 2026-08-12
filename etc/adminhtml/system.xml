@@ -1,0 +1,758 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * zahls.ch Payment Gateway Module
+ *
+ * @category  zahls.ch
+ * @package   Zahls_PaymentGateway
+ * @author      zahls <support@zahls.ch>
+ * @copyright   2026 zahls
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="zahls" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>zahls.ch</label>
+                <fieldset_css>zahls-payment-section</fieldset_css>
+                <group id="credentials" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Required Settings</label>
+                    <field id="platform" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Platform</label>
+                        <source_model>Zahls\PaymentGateway\Model\Config\Source\Platform</source_model>
+                        <config_path>payment/zahls_payment/platform</config_path>
+                    </field>
+                    <field id="connect_platform_button" translate="label" type="button" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Connect To Platform</label>
+                        <frontend_model>Zahls\PaymentGateway\Block\Adminhtml\System\Config\ConnectPlatformButton</frontend_model>
+                    </field>
+                    <field id="instance_name" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Instance Name</label>
+                        <config_path>payment/zahls_payment/instance_name</config_path>
+                    </field>
+                    <field id="api_secret" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>API Secret Key</label>
+                        <config_path>payment/zahls_payment/api_secret</config_path>
+                    </field>
+                </group>
+                <group id="payment_methods" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Select Payment methods</label>
+                    <group id="zahls_payment" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Show all payment methods</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="2" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment/sort_order</config_path>
+                        </field>
+                    </group>
+                     <group id="zahls_payment_masterpass" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Masterpass by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_masterpass/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_masterpass/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="2" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_masterpass/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_mastercard" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Mastercard by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_mastercard/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_mastercard/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="2" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_mastercard/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_visa" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Visa by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_visa/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_visa/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_visa/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_apple_pay" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>ApplePay by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_apple_pay/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_apple_pay/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_apple_pay/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_maestro" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Maestro by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_maestro/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_maestro/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_maestro/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_jcb" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Jcb by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_jcb/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_jcb/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_jcb/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_american_express" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>American Express by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_american_express/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_american_express/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_american_express/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_wirpay" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Wirpay by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_wirpay/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_wirpay/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_wirpay/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_paypal" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Paypal by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_paypal/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_paypal/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_paypal/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_bitcoin" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Bitcoin by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_bitcoin/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_bitcoin/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_bitcoin/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_klarna" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Klarna by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_klarna/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_klarna/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_klarna/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_billpay" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Billpay by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_billpay/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_billpay/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_billpay/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_bonus" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Bonuscard by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_bonus/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_bonus/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_bonus/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_cashu" translate="label" type="text" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Cashu by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_cashu/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_cashu/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_cashu/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_cb" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Cb by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_cb/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_cb/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_cb/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_diners_club" translate="label" type="text" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Diners Club by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_diners_club/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_diners_club/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_diners_club/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_sepa_direct_debit" translate="label" type="text" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Sepa Direct Debit by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_sepa_direct_debit/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_sepa_direct_debit/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_sepa_direct_debit/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_discover" translate="label" type="text" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Discover by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_discover/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_discover/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_discover/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_elv" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Elv by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_elv/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_elv/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_elv/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_ideal" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Ideal by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_ideal/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_ideal/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_ideal/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_invoice" translate="label" type="text" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Invoice by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_invoice/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_invoice/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_invoice/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_invoice" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Invoice by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_invoice/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_invoice/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_invoice/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_myone" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Myone by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_myone/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_myone/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_myone/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_paysafecard" translate="label" type="text" sortOrder="23" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Paysafecard by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_paysafecard/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_paysafecard/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_paysafecard/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_post_finance_pay" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Post Finance Pay by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_post_finance_pay/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_post_finance_pay/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_post_finance_pay/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_swissbilling" translate="label" type="text" sortOrder="26" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Swissbilling by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_swissbilling/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_swissbilling/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_swissbilling/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_twint" translate="label" type="text" sortOrder="27" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Twint by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_twint/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_twint/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_twint/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_barzahlen" translate="label" type="text" sortOrder="28" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Barzahlen by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_barzahlen/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_barzahlen/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_barzahlen/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_bancontact" translate="label" type="text" sortOrder="29" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Bancontact by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_bancontact/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_bancontact/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_bancontact/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_giropay" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Giropay by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_giropay/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_giropay/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_giropay/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_eps" translate="label" type="text" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Eps by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_eps/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_eps/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_eps/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_google_pay" translate="label" type="text" sortOrder="32" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Google Pay by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_google_pay/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_google_pay/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_google_pay/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_oney" translate="label" type="text" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Oney by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_oney/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_oney/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_oney/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_centi" translate="label" type="text" sortOrder="36" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Centi by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_centi/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_centi/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_centi/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_heidipay" translate="label" type="text" sortOrder="37" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Heidipay by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_heidipay/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_heidipay/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_heidipay/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_bank_transfer" translate="label" type="text" sortOrder="38" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Bank Transfer by zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_bank_transfer/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_bank_transfer/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_bank_transfer/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_pay_by_bank" translate="label" type="text" sortOrder="39" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Pay by Bank via zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_pay_by_bank/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_pay_by_bank/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_pay_by_bank/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_powerpay" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Powerpay via zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_powerpay/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_powerpay/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_powerpay/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_cembrapay" translate="label" type="text" sortOrder="41" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Purchase on Account (CembraPay)</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_cembrapay/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_cembrapay/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_cembrapay/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_crypto" translate="label" type="text" sortOrder="42" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Crypto via zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_crypto/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_crypto/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_crypto/sort_order</config_path>
+                        </field>
+                    </group>
+                    <group id="zahls_payment_verd_cash" translate="label" type="text" sortOrder="43" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>VERD.cash via zahls.ch</label>
+                        <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                            <label>Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/zahls_payment_verd_cash/active</config_path>
+                        </field>
+                        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                            <label>Title</label>
+                            <config_path>payment/zahls_payment_verd_cash/title</config_path>
+                        </field>
+                        <field id="sort_order" translate="label" type="text" sortOrder="3" showInDefault="3" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/zahls_payment_verd_cash/sort_order</config_path>
+                        </field>
+                    </group>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

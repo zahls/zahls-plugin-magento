@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * zahls.ch Payment Gateway
+ *
+ * Copyright © 2022 zahls (https://www.zahls.ch)
+ * See LICENSE.txt for license details.
+ *
+ * @copyright   2026 zahls
+ * @author      zahls <support@zahls.ch>
+ * @package     magento2
+ * @subpackage  zahls_payment_gateway
+ * @version     1.0.1
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_predispatch_checkout_index_index">
+        <observer name="refill_quote_items" instance="Zahls\PaymentGateway\Observer\RestoreCartObserver" />
+    </event>
+</config>
