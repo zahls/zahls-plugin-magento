@@ -12,9 +12,11 @@ Accept TWINT, cards, PostFinance and more in Magento 2 via [zahls.ch](https://ww
 
 1. Download [`Zahls_PaymentGateway.zip`](https://github.com/zahls/zahls-plugin-magento/releases/latest/download/Zahls_PaymentGateway.zip) from the [latest release](https://github.com/zahls/zahls-plugin-magento/releases/latest).
 2. Extract into `app/code/` so you get `app/code/Zahls/PaymentGateway/`.
-3. Run:
+3. Install the zahls.ch PHP SDK the module uses, then enable the module:
 
 ```bash
+composer require zahls/zahls-php:^1.0
+bin/magento module:enable Zahls_PaymentGateway
 bin/magento setup:upgrade
 bin/magento setup:di:compile
 bin/magento cache:clean
