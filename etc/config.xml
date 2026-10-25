@@ -14,7 +14,6 @@
         <payment>
             <zahls_payment>
                 <active>0</active>
-                <platform>zahls.ch</platform>
                 <title>zahls.ch</title>
                 <payment_action>authorize</payment_action> <!-- You can use anothed method like capture  -->
                 <order_status>pending_payment</order_status> <!-- set default order status-->

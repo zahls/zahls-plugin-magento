@@ -5,7 +5,7 @@
 ?>
 
 <button type="button" class="action-default" id="connect_platform_button">
-    <span><?= $block->escapeHtml( __( 'Connect To Platform' ) ) ?></span>
+    <span><?= $block->escapeHtml( __( 'Connect to zahls.ch' ) ) ?></span>
 </button>
 
 <div id="zahls_message_container" style="padding-top: 10px;"></div>
@@ -21,15 +21,7 @@
         $(function () {
             // Attach a click event handler to our custom button
             $('#connect_platform_button').on('click', function () {
-
-                const platformElement = $('[name="groups[zahls][groups][credentials][fields][platform][value]"]');
-                const platformUrl = platformElement.val();
-                if (!platformUrl) {
-                    $('#zahls_message_container')
-                        .html('<div class="message message-warning">' + 'Please Select a Platform' + '</div>');
-                    return;
-                }
-                let popupWindow = createPopup(platformUrl);
+                let popupWindow = createPopup('zahls.ch');
 
                 let popupCheck;
                 popupCheck = setInterval(() => {

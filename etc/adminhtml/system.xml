@@ -17,13 +17,8 @@
                 <fieldset_css>zahls-payment-section</fieldset_css>
                 <group id="credentials" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Required Settings</label>
-                    <field id="platform" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="0">
-                        <label>Platform</label>
-                        <source_model>Zahls\PaymentGateway\Model\Config\Source\Platform</source_model>
-                        <config_path>payment/zahls_payment/platform</config_path>
-                    </field>
                     <field id="connect_platform_button" translate="label" type="button" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="0">
-                        <label>Connect To Platform</label>
+                        <label>Connect to zahls.ch</label>
                         <frontend_model>Zahls\PaymentGateway\Block\Adminhtml\System\Config\ConnectPlatformButton</frontend_model>
                     </field>
                     <field id="instance_name" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
