@@ -88,11 +88,9 @@ abstract class AbstractAction extends \Magento\Framework\App\Action\Action
     public function getZahlsInstance($storeId = null)
     {
         $config = $this->getZahlsConfig($storeId);
-        $platform = !empty($config['platform']) ? $config['platform'] : 'zahls.ch';
         return $this->zahlsFactory->create([
             'instance'  => $config['instance_name'],
             'apiSecret' => $config['api_secret'],
-            'apiBaseDomain' => $platform,
         ]);
     }
 }

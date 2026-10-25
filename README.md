@@ -23,7 +23,6 @@ bin/magento cache:clean
 ```
 
 4. Configure under **Stores → Configuration → Sales → Payment Methods**:
-   - **Platform:** `zahls.ch`
    - **Instance Name** and **API Secret** from zahls.ch → API & Integrations
 5. Set the webhook URL in your zahls.ch dashboard (`https://your-shop.example/zahls/payment/webhook`).
 
