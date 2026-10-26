@@ -9,7 +9,7 @@
     "license": [
         "OSL-3.0"
     ],
-    "version": "1.4.11",
+    "version": "1.4.12",
     "autoload": {
         "files": [
             "registration.php"
